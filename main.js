@@ -52,4 +52,40 @@
                 });
         });
     }
+
+    // --- LÓGICA DO CARROSSEL (index.html) ---
+    const track = document.querySelector('.carousel-track');
+    const btnPrev = document.getElementById('btn-prev');
+    const btnNext = document.getElementById('btn-next');
+
+    if (track && btnPrev && btnNext) {
+        let currentPosition = 0;
+
+        // Função para mover o carrossel
+        function moveCarousel(direction) {
+            const card = track.querySelector('.card');
+            // Pega a largura do card + o gap (espaço) calculado pelo navegador
+            const cardWidth = card.offsetWidth + 28; // 28 é o gap do CSS
+
+            // Calcula o limite máximo para não rolar pro vazio
+            const trackWidth = track.scrollWidth;
+            const containerWidth = track.parentElement.offsetWidth;
+            const maxScroll = -(trackWidth - containerWidth);
+
+            if (direction === 'next') {
+                currentPosition -= cardWidth;
+                // Se passar do limite, volta um pouco ou trava
+                if (currentPosition < maxScroll) currentPosition = maxScroll;
+            } else {
+                currentPosition += cardWidth;
+                // Não deixa passar do início (0)
+                if (currentPosition > 0) currentPosition = 0;
+            }
+
+            track.style.transform = `translateX(${currentPosition}px)`;
+        }
+
+        btnNext.addEventListener('click', () => moveCarousel('next'));
+        btnPrev.addEventListener('click', () => moveCarousel('prev'));
+    }
 })();

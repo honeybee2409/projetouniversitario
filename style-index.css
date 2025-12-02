@@ -206,19 +206,33 @@ section {
     display: block;
 }
 
-/* CARDS GRID */
-.cards-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+/* --- CARROSSEL (SUBSTITUI O ANTIGO CARDS GRID) --- */
+.carousel-container {
+    position: relative;
+    max-width: 100%;
+    /* Padding lateral para os botões não ficarem em cima dos cards */
+    padding: 0 50px;
+}
+
+.carousel-viewport {
+    overflow: hidden;
+    /* Esconde o que está fora */
+    padding: 20px 10px;
+    /* Espaço para a rotação/sombra não cortar */
+}
+
+.carousel-track {
+    display: flex;
     gap: 28px;
-    align-items: start;
-    justify-items: center;
+    transition: transform 0.5s ease-in-out;
+    /* Animação suave ao deslizar */
 }
 
 .card {
     background: var(--card-bg);
-    width: 100%;
-    max-width: 260px;
+    /* Flex: 0 0 auto impede que o card encolha, mantendo largura fixa */
+    flex: 0 0 260px;
+    width: 260px;
     padding: 14px;
     border-radius: 18px;
     box-shadow: var(--shadow-strong);
@@ -237,34 +251,59 @@ section {
     text-align: center;
     margin-top: 10px;
     font-weight: 700;
-    /* Título do card herda Abril Fatface da regra acima */
 }
 
 .card .desc {
     text-align: center;
     margin-top: 8px;
     font-size: 16px;
-    /* Ajustado para Indie Flower */
     color: #333;
     font-weight: 600;
-    /* Indie Flower fica melhor um pouco mais bold se for pequeno */
 }
 
-.cards-grid .card:nth-child(3n+1) {
+/* Mantendo o charme dos cards tortos no carrossel */
+.carousel-track .card:nth-child(3n+1) {
     transform: rotate(-3deg);
 }
 
-.cards-grid .card:nth-child(3n+2) {
+.carousel-track .card:nth-child(3n+2) {
     transform: rotate(2deg);
 }
 
-.cards-grid .card:nth-child(3n) {
+.carousel-track .card:nth-child(3n) {
     transform: rotate(-2deg);
 }
 
 .card:hover {
     transform: scale(1.05) rotate(0deg) !important;
     z-index: 10;
+}
+
+/* Botões do Carrossel */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    font-size: 40px;
+    color: var(--text-title);
+    cursor: pointer;
+    z-index: 20;
+    transition: transform 0.2s, color 0.2s;
+}
+
+.carousel-btn:hover {
+    transform: translateY(-50%) scale(1.2);
+    color: #1a4d3a;
+}
+
+.carousel-btn.prev {
+    left: 0;
+}
+
+.carousel-btn.next {
+    right: 0;
 }
 
 /* LISTAS */
@@ -292,7 +331,6 @@ section {
     padding: 12px 28px;
     background: var(--text-title);
     color: var(--panel-bg);
-    /* Usar Abril Fatface ou uma sans-serif bold no botão fica melhor para leitura */
     font-family: 'Abril Fatface', serif;
     font-weight: normal;
     text-decoration: none;
@@ -357,10 +395,6 @@ footer.site-footer {
         grid-template-columns: 1fr;
     }
 
-    .cards-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
     .hero-title {
         font-size: 64px;
     }
@@ -379,8 +413,15 @@ footer.site-footer {
 }
 
 @media (max-width: 560px) {
-    .cards-grid {
-        grid-template-columns: 1fr;
+
+    /* Ajuste do carrossel no mobile */
+    .carousel-container {
+        padding: 0 30px;
+    }
+
+    .card {
+        flex: 0 0 240px;
+        width: 240px;
     }
 
     .hero-title {
