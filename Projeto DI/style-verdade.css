@@ -1,0 +1,454 @@
+:root {
+    /* PALETA DE CORES - A VERDADE (ROXO/PRETO/TEIA) */
+    --bg-body-start: #2e2136;
+    --bg-body-end: #0f0a14;
+    --bg-color-solid: #1a1a1a;
+
+    --header-grad-start: #5a3d75;
+    --header-grad-end: #321e44;
+
+    /* Painéis escuros para esta página */
+    --panel-bg: #1f1826;
+    --text-main: #e0e0e0;
+    --text-title: #bdaecf;
+    --text-shadow: #000;
+
+    --card-bg: #2a2233;
+
+    --page-bg-image: url('images/verdade.png');
+    --page-bg-opacity: 0.1;
+
+    --max-width: 80%;
+    --border-radius: 18px;
+    --shadow-soft: 0 6px 18px rgba(0, 0, 0, 0.5);
+    --shadow-strong: 0 8px 28px rgba(0, 0, 0, 0.7);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Indie Flower', cursive;
+    font-size: 19px;
+    color: var(--text-main);
+    background: linear-gradient(180deg, var(--bg-body-start) 0%, var(--bg-body-end) 100%);
+    background-color: var(--bg-color-solid);
+    min-height: 100vh;
+}
+
+.page-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-image: var(--page-bg-image);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    opacity: var(--page-bg-opacity);
+    pointer-events: none;
+}
+
+/* HEADER */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 36px;
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    background: linear-gradient(90deg, var(--header-grad-start), var(--header-grad-end));
+    box-shadow: var(--shadow-strong);
+    margin-bottom: 26px;
+    transition: all .32s cubic-bezier(.2, .9, .2, 1);
+    border-bottom: 2px solid #3c2a4d;
+}
+
+.header--large {
+    padding: 40px 60px;
+}
+
+.header--compact {
+    padding: 10px 20px;
+}
+
+.logo img {
+    height: 46px;
+    display: block;
+    transition: height .32s cubic-bezier(.2, .9, .2, 1);
+    filter: grayscale(0.5) brightness(1.2);
+}
+
+.header--large .logo img {
+    height: 120px;
+}
+
+.header--compact .logo img {
+    height: 36px;
+}
+
+nav {
+    font-family: 'Abril Fatface', serif;
+    font-size: 28px;
+    transition: font-size .32s ease;
+}
+
+.header--large nav {
+    font-size: 32px;
+}
+
+.header--compact nav {
+    font-size: 18px;
+}
+
+nav a {
+    color: #dcdcdc;
+    text-decoration: none;
+    margin: 0 18px;
+    text-shadow: 1px 1px 2px #000;
+}
+
+nav a:hover {
+    text-decoration: underline;
+    color: #fff;
+}
+
+/* MAIN */
+main {
+    max-width: var(--max-width);
+    margin: 90px auto;
+    padding: 70px 87px 1px;
+    position: relative;
+    z-index: 1;
+}
+
+section {
+    margin-bottom: 80px;
+}
+
+/* TÍTULOS */
+.hero-title,
+.section-title,
+.card-title {
+    font-family: 'Abril Fatface', serif;
+    color: var(--text-title);
+    text-shadow: 3px 3px 0 #000;
+    margin: 0 0 12px;
+    line-height: 1.1;
+}
+
+.hero-title {
+    font-size: 80px;
+}
+
+.section-title {
+    font-size: 56px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.panel {
+    background: var(--panel-bg);
+    color: var(--text-main);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-soft);
+    line-height: 1.6;
+    font-size: 22px;
+    text-align: justify;
+    border: 1px solid #453457;
+}
+
+.panel p {
+    margin: 0 0 16px 0;
+}
+
+.panel p:last-child {
+    margin-bottom: 0;
+}
+
+/* HERO GRID */
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 36px;
+    align-items: center;
+}
+
+.hero-grid.reverse {
+    grid-template-columns: 520px 1fr;
+}
+
+.image-wrap img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    box-shadow: var(--shadow-strong);
+    display: block;
+    border: 1px solid #555;
+    filter: contrast(1.1) sepia(0.2);
+}
+
+/* --- VERDADES (GRID) --- */
+.truth-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.truth-card {
+    background: var(--card-bg);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-strong);
+    border-top: 4px solid #6b2d2d;
+    transition: transform 0.2s;
+}
+
+.truth-card:hover {
+    transform: translateY(-5px);
+}
+
+.truth-card h3 {
+    font-family: 'Abril Fatface', serif;
+    color: #d48787;
+    font-size: 26px;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.truth-card p {
+    font-size: 18px;
+    color: #ccc;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* --- TEORIAS --- */
+.theory-panel {
+    background: #15101a;
+    border: 1px dashed #5a3d75;
+    padding: 40px;
+    position: relative;
+}
+
+.theory-panel::after {
+    content: "?";
+    position: absolute;
+    right: 20px;
+    bottom: -20px;
+    font-family: 'Abril Fatface', serif;
+    font-size: 150px;
+    color: rgba(255, 255, 255, 0.03);
+    pointer-events: none;
+}
+
+/* --- O POÇO --- */
+.well-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#poco.hero-grid {
+    grid-template-columns: 520px 1fr;
+    align-items: center;
+}
+
+#poco .image-wrap img {
+    max-height: 400px;
+    width: 100%;
+    object-fit: cover;
+}
+
+/* --- ESTILOS DO FORMULÁRIO --- */
+.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-family: 'Abril Fatface', serif;
+    color: #d48787;
+    font-size: 20px;
+}
+
+.form-input,
+.form-textarea {
+    width: 100%;
+    padding: 12px;
+    background-color: #2a2233;
+    border: 1px solid #5a3d75;
+    border-radius: 8px;
+    color: #e0e0e0;
+    font-family: 'Indie Flower', cursive;
+    font-size: 18px;
+    transition: border-color 0.3s;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: #f09b2b;
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.btn-submit {
+    display: inline-block;
+    width: 100%;
+    padding: 14px;
+    background: #f09b2b;
+    color: #4a3627;
+    font-family: 'Abril Fatface', serif;
+    font-size: 20px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+    text-transform: uppercase;
+}
+
+.btn-submit:hover {
+    transform: scale(1.02);
+    background: #ffaa4a;
+}
+
+/* --- MENSAGEM DE SUCESSO --- */
+.success-message {
+    display: none;
+    /* Oculto por padrão */
+    text-align: center;
+    padding: 40px;
+    background: #2a2233;
+    border: 2px solid #f09b2b;
+    border-radius: 12px;
+    animation: fadeIn 0.5s ease-in;
+}
+
+.success-message h3 {
+    font-family: 'Abril Fatface', serif;
+    color: #f09b2b;
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* FOOTER */
+footer.site-footer {
+    margin-top: 40px;
+}
+
+.footer-black {
+    background: #000;
+    color: #fff;
+    padding: 20px 0;
+    border-top: 1px solid #333;
+}
+
+.footer-black-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.footer-black a {
+    color: #888;
+    text-decoration: underline;
+}
+
+.footer-black p {
+    margin: 0;
+    font-size: 16px;
+    color: #666;
+}
+
+.footer-black img {
+    height: 40px;
+    vertical-align: middle;
+    margin-left: 10px;
+    border-radius: 4px;
+    opacity: 0.7;
+}
+
+/* RESPONSIVE */
+@media (max-width: 980px) {
+
+    .hero-grid,
+    .hero-grid.reverse,
+    .truth-grid,
+    #poco.hero-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-title {
+        font-size: 60px;
+    }
+
+    .header--large {
+        padding: 20px;
+    }
+
+    .header--large .logo img {
+        height: 60px;
+    }
+}
+
+@media (max-width: 560px) {
+    .hero-title {
+        font-size: 42px;
+    }
+
+    .section-title {
+        font-size: 36px;
+    }
+
+    nav {
+        font-size: 16px;
+    }
+
+    nav a {
+        margin: 0 8px;
+    }
+
+    .footer-black-inner {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .header--compact {
+        padding: 10px;
+    }
+
+    main {
+        padding: 40px 20px;
+    }
+}
